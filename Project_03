@@ -1,0 +1,82 @@
+Android App Synopsis
+
+This is an Android app to display the timetable of M. Tech students of a college. On the home page the 
+user is asked to select the branch of engineering and a day of the week. These drop down menus are 
+created using “spinner”. A “submit” button is added to finalize the choices. The submit action can direct 
+the user to a page displaying the timetable for the selected day, if it exists. When installed on a 
+smart-phone it would be easy to check the timetable for any day, no need to remember. Just select your 
+branch (COMP/EXTC/IT/ELEC), and a day of the week (Mon/Tue/Wed/Thu/Fri) and submit and you are done!
+
+Android App Code
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@string/color"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="96dp"
+        android:text="@string/Submit" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp"
+        android:entries="@array/branch_arrays"
+        android:prompt="@string/prompt1" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spinner1"
+        android:layout_below="@+id/spinner1"
+        android:layout_marginTop="33dp"
+        android:entries="@array/day_arrays"
+        android:prompt="@string/prompt2" />
+ 
+</RelativeLayout>
+
+strings.xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">tttt</string>
+    <string name="action_settings">Action Setting</string>
+ <string name="Submit">Submit</string> 
+ <string name="prompt2">Choose a day</string>
+ <string name="prompt1">Choose a branch</string>
+ 
+ <string-array name="branch_arrays">
+        <item>Comp</item>
+        <item>Extc</item>
+        <item>Elec</item>
+        <item>IT</item>
+    </string-array>
+    
+    <string-array name="day_arrays">
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
+    <string name="color">#4A73B9</string>
+</resources>
+
+OUTPUT
+ 
