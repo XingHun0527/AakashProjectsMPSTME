@@ -1,0 +1,77 @@
+ 
+
+
+Nirbhay Singh	       Meet Patel	    Keval Shah
+
+Under the Guidance of
+
+Dr. Dhirendra Mishra
+
+
+
+
+
+
+
+TECHNICAL PROPOSAL
+
+Introduction:
+
+The multiplatform application being developed is an extension to our final year project where we are developing an Alumni Management System for the college.
+The application shall include all client (Alumni) features. This will be a cloud-based application, which shall access the database of the alumni management system. For this semester we shall implement the UI of the application and backend coding of the application shall be done in the next semester.
+
+Software Requirements Of the System:
+
+Android 2.2 or above for Android powered devices.
+iOS 5.x or above for iOS powered devices.
+
+Hardware Requirements Of The System:
+Touchscreen Type: Capacitive
+Processor: Cortex A8;1 GHz
+RAM: 512 MB
+Wifi Connectivity Required
+
+Methodology:
+
+The Application shall be developed using IBM Dojo and PhoneGAP.
+
+Flow Chart:
+Refer Appendix I
+
+ER Diagram:
+ Refer Appendix II
+
+Sequence Diagram:
+Refer Appendix III
+
+Use Case Diagram:
+Refer Appendix IV
+
+Future Scope:
+The User interface of the application shall be implement and the following future scope is possible:
+
+1.	Backend Coding of the application
+2.	Connecting the application to the database server.
+
+Reference:
+
+•	www.akashtablet.com
+•	www.phonegap.com
+•	http://dojotoolkit.org
+
+	APPENDIX I
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
