@@ -1,0 +1,18 @@
+
+REPORT
+AMI INTWALA
+Abstract
+Android is the easily available operating system. Nowadays around 60% of the people are using android based phones. The intractability provided by these phones is much more confortable then the other Operating System. So people needs more ease of access to work which is accessible daily. There are many applications designed to make users comfortable for their daily life. As we have seen, many people use the sticky notes or stickers to remember some tasks which need to be complete. So my project is to make the same sticky notes in the android phones which can help users to remember their work and can always be with user. Along with the notes a date should be feed in which will remind the user to complete the work on that date by ringing an alarm.
+Introduction
+Android users are many throughout this world. There are different versions of the Android which helps the users to use the phone with an ease. Android phones are now emerging with the speed in the society. So there should be some kinds of applications which connect the real world of the user to the technology. One of the most used user applicable for real world are Sticky Notes.
+People use the sticky notes to remember the task and stick at the places where they frequently go and get it remind of. In real world these notes are stick basically on the refrigerator of the home, door of the cupboard, on the mirror, or on the office desk. Sometimes the tasks need to be completed are not present at both the places. So it is a fair idea to make it possible which remind of the work at regular time.
+So I am going to design an application for the android software, which will generate the Sticky Notes for the users and will remind the users of the tasks whenever they require. The application needs a user to specify a date while creating a note. An alarm is set automatically on the date specified which will remind users that the specified work needs to be completed. So I am here to generate an application, which will work as the sticky notes for the users in the phones and remind every tasks which needs to be completed at the regular time. All the notes generated will be saved at the main screen of the phone and the user can adjust it later on.
+Graphical User Interface
+The GUI is user friendly which the user can easily use and save it as they require. The user just needs to specify the text along with the date. The date should be the target date on which the alarm will ring. Thus the user should specify the proper date according to their requirements. Also there are two buttons specified, SAVE and CANCEL. The SAVE button is used for the notes to be saved in the phone and that note should be displayed on the main screen along with the contents. The CANCEL button will discard the note and make the text box and date box empty if not to generate the new note.
+
+
+The general design of the Sticky Note is as shown below:
+ 
+
+Conclusion
+These note application is helpful to easily save the contents and is accessible at any place. The user need not require remembering anything as the phone will remind automatically by ringing the alarm. User can access the contents whenever required without worrying about the forgetting the note at home or office. These notes are helpful to all kinds of the users.
