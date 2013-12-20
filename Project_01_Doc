@@ -1,0 +1,323 @@
+
+
+
+
+
+
+
+INTRODUCTION 
+I.	Overview :
+LogiScope is based on the concept of a Logical Analyzer. A logic analyzer is an electronic instrument that captures and displays multiple signals from a digital system or digital circuit. A logic analyzer may convert the captured data into timing diagrams, protocol decodes, state machine traces, assembly language, or may correlate assembly with source-level software. Logic Analyzers have advanced triggering capabilities, and are useful when a user needs to see the timing relationships between many signals in a digital system.
+A logic analyzer can be triggered on a complicated sequence of digital events, then capture a large amount of digital data from the system under test (SUT).
+When logic analyzers first came into use, it was common to attach several hundred "clips" to a digital system. Later, specialized connectors came into use. The evolution of logic analyzer probes has led to a common footprint that multiple vendors support, which provides added freedom to end users. Introduced in April, 2002, connectorless technology (identified by several vendor-specific trade names: Compression Probing; Soft Touch; D-Max) has become popular. These probes provide a durable, reliable mechanical and electrical connection between the probe and the circuit board with less than 0.5 to 0.7 pF loading per signal.
+Once the probes are connected, the user programs the analyzer with the names of each signal, and can group several signals together for easier manipulation. Next, a capture mode is chosen, either "timing" mode, where the input signals are sampled at regular intervals based on an internal or external clock source, or "state" mode, where one or more of the signals are defined as "clocks", and data are taken on the rising or falling edges of these clocks, optionally using other signals to qualify these clocks.
+Once the data are captured, they can be displayed several ways, from the simple (showing waveforms or state listings) to the complex (showing decoded Ethernet protocol traffic). Some analyzers can also operate in a "compare" mode, where they compare each captured data set to a previously recorded data set, and halt capture or visually notify the operator when this data set is either matched or not. This is useful for long-term empirical testing. Recent analyzers can even be set to email a copy of the test data to the engineer on a successful trigger.
+
+
+
+
+
+
+
+
+METHODOLOGY
+
+
+
+
+II.	Methodology :
+
+The following diagram explains the Flow of the Project :
+
+
+
+
+There will be a micro-controller (Arduino) as the main hardware which will be connected to an Android phone/tablet (Asus Nexus 7 Tablet) as an accessory using USB by the Google ADK protocol or with a PC through USB.
+The micro-controller will have an I/O buffer with an 8/16 channel output.
+ 
+
+
+
+
+
+
+
+HARDWARE & SOFTWARE REQUIREMENTS 
+III.	Hardware and Software Requirements :
+The various Hardware and Software required for the execution of this project are as follows :
+a.	Hardware Requirements :
+i.	USB Cable
+ii.	Android Device
+iii.	Arduino ADK
+iv.	Power Source
+v.	Digital Circuit
+
+b.	Software Requirements :
+i.	LogiScope Application
+ii.	Android OS – (Version 4.0 and above)
+iii.	Kernel Version – (Version 3.0.10 and above)
+ 
+
+
+
+
+
+
+
+HARDWARE REQUIREMENTS
+
+ 
+IV.	Description :
+a.	USB Cable : 
+Universal Serial Bus (USB) is an industry standard developed in the mid-1990s that defines the cables, connectors and communications protocols used in a bus for connection, communication, and power supply between computers and electronic devices. 
+USB was designed to standardize the connection of computer peripherals (including keyboards, pointing devices, digital cameras, printers, portable media players, disk drives and network adapters) to personal computers, both to communicate and to supply electric power. 
+It has become commonplace on other devices, such as smartphones, PDAs and video game consoles. USB has effectively replaced a variety of earlier interfaces, such as serial and parallel ports, as well as separate power chargers for portable devices.
+b.	Android Device :
+Android is an operating system based on the Linux kernel, and designed primarily for touch screen mobile devices such as smartphones and tablet computers. 
+Initially developed by Android, Inc., which Google backed financially and later bought in 2005, Android was unveiled in 2007 along with the founding of the Open Handset Alliance: a consortium of hardware, software, and telecommunication companies devoted to advancing open standards for mobile devices. 
+The first Android-powered phone was sold in October 2008. 
+The user interface of Android is based off direct manipulation, using touch inputs that loosely correspond to real-world actions, like swiping, tapping, pinching and reverse pinching to manipulate on-screen objects. Internal hardware such as accelerometers, gyroscopes and proximity sensors are used by some applications to respond to additional user actions, for example adjusting the screen from portrait to landscape depending on how the device is oriented. 
+Android allows users to customize their home screens with shortcuts to applications and widgets, which allow users to display live content, such as emails and weather information, directly on the home screen. 
+Applications can further send notifications to the user to inform them of relevant information, such as new emails and text messages.
+c.	Arduino ADK :
+The Arduino ADK is a microcontroller board based on the ATmega2560 (datasheet). It has a USB host interface to connect with Android based phones, based on the MAX3421e IC. 
+It has 54 digital input/output pins (of which 15 can be used as PWM outputs), 16 analog inputs, 4 UARTs (hardware serial ports), a 16 MHz crystal oscillator, a USB connection, a power jack, an ICSP header, and a reset button.
+
+The ADK is based on the Mega 2560.
+
+Schematic, Reference Design & Pin Mapping:
+EAGLE files: Arduino_ADK-Mega_2560
+Schematic: Arduino ADK_Mega_2560-schematic
+Pin Mapping: PinMap2560
+
+Pin Number	Pin Name	Mapped Pin Name
+1	PG5 ( OC0B )	Digital pin 4 (PWM)
+2	PE0 ( RXD0/PCINT8 )	Digital pin 0 (RX0)
+3	PE1 ( TXD0 )	Digital pin 1 (TX0)
+4	PE2 ( XCK0/AIN0 )	 
+5	PE3 ( OC3A/AIN1 )	Digital pin 5 (PWM)
+6	PE4 ( OC3B/INT4 )	Digital pin 2 (PWM)
+7	PE5 ( OC3C/INT5 )	Digital pin 3 (PWM)
+8	PE6 ( T3/INT6 )	 
+9	PE7 ( CLKO/ICP3/INT7 )	 
+10	VCC	VCC
+11	GND	GND
+12	PH0 ( RXD2 )	Digital pin 17 (RX2)
+13	PH1 ( TXD2 )	Digital pin 16 (TX2)
+14	PH2 ( XCK2 )	 
+15	PH3 ( OC4A )	Digital pin 6 (PWM)
+16	PH4 ( OC4B )	Digital pin 7 (PWM)
+17	PH5 ( OC4C )	Digital pin 8 (PWM)
+18	PH6 ( OC2B )	Digital pin 9 (PWM)
+19	PB0 ( SS/PCINT0 )	Digital pin 53 (SS)
+20	PB1 ( SCK/PCINT1 )	Digital pin 52 (SCK)
+21	PB2 ( MOSI/PCINT2 )	Digital pin 51 (MOSI)
+22	PB3 ( MISO/PCINT3 )	Digital pin 50 (MISO)
+23	PB4 ( OC2A/PCINT4 )	Digital pin 10 (PWM)
+24	PB5 ( OC1A/PCINT5 )	Digital pin 11 (PWM)
+25	PB6 ( OC1B/PCINT6 )	Digital pin 12 (PWM)
+26	PB7 ( OC0A/OC1C/PCINT7 )	Digital pin 13 (PWM)
+27	PH7 ( T4 )	 
+28	PG3 ( TOSC2 )	 
+29	PG4 ( TOSC1 )	 
+30	RESET	RESET
+31	VCC	VCC
+32	GND	GND
+33	XTAL2	XTAL2
+34	XTAL1	XTAL1
+35	PL0 ( ICP4 )	Digital pin 49
+36	PL1 ( ICP5 )	Digital pin 48
+37	PL2 ( T5 )	Digital pin 47
+38	PL3 ( OC5A )	Digital pin 46 (PWM)
+39	PL4 ( OC5B )	Digital pin 45 (PWM)
+40	PL5 ( OC5C )	Digital pin 44 (PWM)
+41	PL6	Digital pin 43
+42	PL7	Digital pin 42
+43	PD0 ( SCL/INT0 )	Digital pin 21 (SCL)
+44	PD1 ( SDA/INT1 )	Digital pin 20 (SDA)
+45	PD2 ( RXDI/INT2 )	Digital pin 19 (RX1)
+46	PD3 ( TXD1/INT3 )	Digital pin 18 (TX1)
+47	PD4 ( ICP1 )	 
+48	PD5 ( XCK1 )	 
+49	PD6 ( T1 )	 
+50	PD7 ( T0 )	Digital pin 38
+51	PG0 ( WR )	Digital pin 41
+52	PG1 ( RD )	Digital pin 40
+53	PC0 ( A8 )	Digital pin 37
+54	PC1 ( A9 )	Digital pin 36
+55	PC2 ( A10 )	Digital pin 35
+56	PC3 ( A11 )	Digital pin 34
+57	PC4 ( A12 )	Digital pin 33
+58	PC5 ( A13 )	Digital pin 32
+59	PC6 ( A14 )	Digital pin 31
+60	PC7 ( A15 )	Digital pin 30
+61	VCC	VCC
+62	GND	GND
+63	PJ0 ( RXD3/PCINT9 )	Digital pin 15 (RX3)
+64	PJ1 ( TXD3/PCINT10 )	Digital pin 14 (TX3)
+65	PJ2 ( XCK3/PCINT11 )	 
+66	PJ3 ( PCINT12 )	 
+67	PJ4 ( PCINT13 )	 
+68	PJ5 ( PCINT14 )	 
+69	PJ6 ( PCINT 15 )	 
+70	PG2 ( ALE )	Digital pin 39
+71	PA7 ( AD7 )	Digital pin 29
+72	PA6 ( AD6 )	Digital pin 28
+73	PA5 ( AD5 )	Digital pin 27
+74	PA4 ( AD4 )	Digital pin 26
+75	PA3 ( AD3 )	Digital pin 25
+76	PA2 ( AD2 )	Digital pin 24
+77	PA1 ( AD1 )	Digital pin 23
+78	PA0 ( AD0 )	Digital pin 22
+79	PJ7	 
+80	VCC	VCC
+81	GND	GND
+82	PK7 ( ADC15/PCINT23 )	Analog pin 15
+83	PK6 ( ADC14/PCINT22 )	Analog pin 14
+84	PK5 ( ADC13/PCINT21 )	Analog pin 13
+85	PK4 ( ADC12/PCINT20 )	Analog pin 12
+86	PK3 ( ADC11/PCINT19 )	Analog pin 11
+87	PK2 ( ADC10/PCINT18 )	Analog pin 10
+88	PK1 ( ADC9/PCINT17 )	Analog pin 9
+89	PK0 ( ADC8/PCINT16 )	Analog pin 8
+90	PF7 ( ADC7 )	Analog pin 7
+91	PF6 ( ADC6 )	Analog pin 6
+92	PF5 ( ADC5/TMS )	Analog pin 5
+93	PF4 ( ADC4/TMK )	Analog pin 4
+94	PF3 ( ADC3 )	Analog pin 3
+95	PF2 ( ADC2 )	Analog pin 2
+96	PF1 ( ADC1 )	Analog pin 1
+97	PF0 ( ADC0 )	Analog pin 0
+98	AREF	Analog Reference
+99	GND	GND
+100	AVCC	VCC
+
+
+
+Summary:
+
+Microcontroller	ATmega2560
+Operating Voltage	5V
+Input Voltage (recommended)	7-12V
+Input Voltage (limits)	6-20V
+Digital I/O Pins	54 (of which 15 provide PWM output)
+Analog Input Pins	16
+DC Current per I/O Pin	40 Ma
+DC Current for 3.3V Pin	50 Ma
+Flash Memory	256 KB of which 8 KB used by bootloader
+SRAM	8 KB
+EEPROM	4 KB
+Clock Speed	16 MHz
+
+Programming:
+The Arduino ADK can be programmed with the Arduino software (download). For details, see the reference and tutorials.
+The ATmega2560 on the Arduino ADK comes preburned with a bootloader (the same on Mega 2560) that allows you to upload new code to it without the use of an external hardware programmer. It communicates using the originalSTK500v2 protocol (reference, C header files).
+You can also bypass the bootloader and program the microcontroller through the ICSP (In-Circuit Serial Programming) header; see these instructions for details.
+The ATmega8U2 firmware source code is available in the Arduino repository. The ATmega8U2 is loaded with a DFU bootloader, which can be activated by:
+On Rev1 boards: connecting the solder jumper on the back of the board (near the map of Italy) and then resetting the 8U2.
+On Rev2 or later boards: there is a resistor that pulling the 8U2/16U2 HWB line to ground, making it easier to put into DFU mode. You can then use Atmel's FLIP software (Windows) or the DFU programmer (Mac OS X and Linux) to load a new firmware. Or you can use the ISP header with an external programmer (overwriting the DFU boot loader). See this user-contributed tutorial for more information.
+
+
+
+
+
+
+PIN Diagram :
+
+
+
+
+ 
+
+
+
+
+
+
+
+SOFTWARE REQUIREMENTS  
+d.	Android ADK :
+The Accessory Development Kit (ADK) is a reference implementation for hardware manufacturers and hobbyists to use as a starting point for building accessories for Android. Each ADK release is provided with source code and hardware specifications to make the process of developing your own accessories easier. Creating new and alternative hardware based on the ADK is encouraged.
+Android accessories can be audio docking stations, exercise machines, personal medical testing devices, weather stations, or any other external hardware device that adds to the functionality of Android.
+Accessories use the Android Open Accessory (AOA) protocol to communicate with Android devices, over a USB cable or through a Bluetooth connection. If you are building an accessory that uses USB, make sure you understand how to implement the AOA protocol to establish communication between your accessory hardware and Android. For more information, see the Android Open Accessory protocol.
+The Android Accessory Development Kit (ADK) for 2012 is the latest reference implementation of an Android Open Accessory device, designed to help Android hardware accessory builders and software developers create accessories for Android. The ADK 2012 is based on the Arduino open source electronics prototyping platform, with some hardware and software extensions that allow it to communicate with Android devices.
+A limited number of these kits were produced and distributed at the Google I/O 2012 developer conference. If you did not receive one of these kits, fear not! The specifications and design files for the hardware were also released for use by manufacturers and hobbyists. You should expect to see kits with similar features available for purchase, or you can build one yourself!
+One of the important new features demonstrated by this ADK is the ability to play audio over a USB connection. Be sure to check out the reference implementation of a USB audio dock in this ADK if you are interested in making audio-related USB accessories for Android.
+Components:
+The ADK 2012 is based on the Arduino open source electronics prototyping platform and is an open hardware design. The hardware design files and firmware source code are included with the ADK software download. The ADK contains two main physical hardware components:
+Main processing board containing the microprocessor, USB connections, power connector and input/output pins. This board can be removed and used separately from the rest of the hardware.
+Shield containing sensors, LEDs, input controls, audio amplifier and speaker output, contained in a custom, polygon box enclosure.
+The main hardware features of the ADK are as follows:
+•	An ARM 32-bit Cortex M3 micro-processor
+•	Separate USB connections for an Android device and computer connection for programming and debugging
+•	Sensors for light, color, proximity, temperature, humidity, barometric pressure, and acceleration
+•	Micro SD Card slot
+•	Bluetooth support
+
+e.	LogiScope Application :
+The LogiScope Application has an User-friendly Interface in which there are 8 Channels for Input/Output mode which can be set as Input or Output even at the same time.
+This Application helps to set the mode just by toggling buttons by clicking them. There are other buttons which gives you and output as High or Low but which only depends on the Input of the Buttons. The Output can be a High or a Low only and which depends on the Input provided by the Toggle Buttons only.
+
+
+
+ 
+
+
+
+
+
+
+
+
+APPLICATIONS 
+V.	Application / Uses :
+
+a.	Testing Digital Circuits :
+This project can be used to test various digital circuits and check whether they are working properly and if not we can even modify the circuit. It can be used in various fields and will be very feasible to use. We can check any point on the circuit as High or a Low just by testing with the help of this Hardware.
+
+b.	Portability :
+This device will be portable and easy to carry it anywhere and everywhere. For testing the circuits we will just need an Android Phone and the Hardware i.e. the microcontroller – Arduino.
+
+c.	Input and Output Capabilities :
+The project will even show the output of the waves when we are checking the circuit or the board which will prove that the circuit is giving a proper output or not. As soon as we test the circuit with the help of the logic probes we will get an output on the Android Device showing the digital output at that point on the circuit.
+
+
+d.	Cross Platform Compatibility & Mobile Compatibility :
+This device can run on any platform if we even implement it on other platforms like iOS and Windows apart from Android. If we implement it on iOS and Windows then it can run on any device let it be a mobile, PC, Laptop, etc.
+ 
+
+
+
+
+
+
+
+
+FUTURE SCOPE 
+VI.	Conclusion & Future Scope :
+
+•	Graphical Representation:
+Instead of making textboxes to display the output of the pins, our aim will be to make a graph that will show the live graphical representation of the value on that channel
+
+•	Windows:
+Make a Windows Application using C# that will also show the live graphical representation that will give the user 2 options to debug their circuit
+
+•	Design our own PCB:
+Adding buffers at each pin which will protect the board from over-voltage
+
+•	iOS and Java Application:
+Make an iOS App and a Java Applet program so that cross-platform can be accomplished
+•	Expand the I/O Channel:
+Expanding the I/O Channel from a 8-channel to 16-channel which will increase the possibility of debugging bigger circuits
+ 
+
+
+REFERENCES
+
+[1]. Mohd. Mohsin, Student, Dept. of Computer Engg, MAEER's MITCOE, Pune, India (2013) ‘Home Automation and Security System Using Android ADK’
+
+[2]. Hsien-Tang Lin, Dept. of Digital Content and Technology, Tahwa University of Science and Technology (2013) ‘Implementing Smart Homes with Open Source Solutions’, International Journal of Smart Home Vol. 7, No. 4, July, 2013
+
+[3]. Murtaza Hussain Shaikh, Department of Computer and Information Science (IDI), Norwegian University of Science & Technology (NTNU), ‘Arduino Tool: For Interactive Artwork Installations.’
+
+[4]. Thien-Bach Huynh, Leon Hardy, Mark Pezzo, and Otis Wilder, Dr. Leon Hardy and Dr. Mark Pezzo, ‘The Testing and Design of an Arduino Microcontroller Board for the Study of Proxemics’, University of South Florida St. Petersburg Student Research Journal Volume 2
