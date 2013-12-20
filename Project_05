@@ -1,0 +1,436 @@
+
+Android Application name :- The foodie stores .
+Submitted by :- Divya D. Nimbalkar 
+Android Project Synopsis :
+	As a beginner with android I have developed this application which works on dynamic links between pages . I have tried developing this application which provides recipe of various famous Indian dishes to its users. Users just have to navigate and go through the cuisine of their choice and then select from the list of dishes within the cuisine to view the recipe of that dish. I have made things easier for the user by giving the required ingredients and its quantity specifically for each and every dish. Also to make the application more appealing I have included tempting and interesting images of the dishes.    
+Android Project Code :
+Page Design code :
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/foodrec"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#FFFFFF"
+        android:text="@string/Button"
+        android:textColor="#000066"
+        android:textStyle="bold|italic"
+        android:typeface="sans"
+        android:onClick="secondscreen" /></RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+Page design image :
+
+ 
+
+Selecting cuisine code and image:
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CCFFFF"
+        android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="276dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:maxHeight="@dimen/activity_vertical_margin"
+        android:text="@string/t1"
+        android:textColor="#000066"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:onClick="South"
+        android:text="@string/B1"
+        android:textColor="#000066"
+        android:textStyle="bold|italic"
+        android:typeface="sans" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:onClick="maharashtra"
+        android:text="@string/B2"
+        android:textColor="#000066"
+        android:textStyle="bold|italic"
+        android:typeface="sans" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:onClick="punjabi"
+        android:text="@string/B3"
+        android:textColor="#000066"
+        android:textStyle="bold|italic"
+        android:typeface="sans" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:onClick="gujrati"
+        android:text="@string/B4"
+        android:textColor="#000066"
+        android:textStyle="bold|italic"
+        android:typeface="sans" />
+
+</LinearLayout>
+
+ 
+
+
+
+
+
+
+Particular cuisine after selction and image :
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CCFFFF"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="263dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:maxHeight="@dimen/activity_vertical_margin"
+        android:text="@string/t5"
+        android:textColor="#000066"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/button51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:onClick="khandvi"
+        android:text="@string/B51"
+        android:textColor="#000066"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        android:typeface="sans" />
+
+    <Button
+        android:id="@+id/button52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:onClick="khaman"
+        android:text="@string/B52"
+        android:textColor="#000066"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        android:typeface="sans" />
+
+    <Button
+        android:id="@+id/button53"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:onClick="ghugra"
+        android:text="@string/B53"
+        android:textColor="#000066"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        android:typeface="sans" />
+
+</LinearLayout>
+
+  
+
+After Selection of particular dishes recipie :
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/khaman"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/khaman"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="11dp"
+        android:maxHeight="@dimen/activity_vertical_margin"
+        android:text="@string/khaman"
+        android:textColor="#000066"
+        android:textSize="15sp"
+        android:textStyle="bold|italic" />
+
+</LinearLayout>
+
+ 
+
+
+Code of AndroidManifest.xml
+<?xml version="1.0" encoding="utf-8" ?> 
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" 
+    package="com.example.thefoodiestores" 
+    android:versionCode="1" 
+    android:versionName="1.0">
+  
+  <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" /> 
+
+<application 
+    android:allowBackup="true" 
+    android:icon="@drawable/ic_launcher" 
+    android:label="@string/app_name" 
+    android:theme="@style/AppTheme"> 
+    
+ <activity android:name="com.example.thefoodiestores.MainActivity" android:label="@string/app_name">
+           
+  <intent-filter>
+    <action android:name="android.intent.action.MAIN" /> 
+      <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+ </activity> 
+ 
+ <activity android:name="com.example.thefoodiestores.second_screen" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+ <activity android:name="com.example.thefoodiestores.south" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+ <activity android:name="com.example.thefoodiestores.maharashtra" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.punjabi" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.gujrati" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  //
+  
+  <activity android:name="com.example.thefoodiestores.dalmakhni" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.ghugra" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.khaman" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.khandvi" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.khichdi" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.lemonrice" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.meduwada" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.misal" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.mutterpaneer" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.paneertikka" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.puranpoli" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  <activity android:name="com.example.thefoodiestores.ravadosa" android:label="@string/app_name"> <intent-filter>
+  <action android:name="android.intent.action.MAIN" /> 
+  <category android:name="android.intent.category.LAUNCHER" /> 
+  </intent-filter>
+  </activity>
+  
+  </application>
+  
+</manifest>
+
+
+
+
+Code for linking pages :
+
+package com.example.thefoodiestores;
+
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Messenger;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+	
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		
+	}
+
+	public void secondscreen(View view) {
+		
+		Intent intent = new Intent(this, second_screen.class);
+		startActivity(intent);
+		
+
+	}
+	}
+
+Code for linking to particular dishes :
+package com.example.thefoodiestores;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+public class second_screen extends Activity{
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.selectcuisine);
+	}
+
+	/**
+	 * @param args
+	 */
+	
+	
+public void South(View view) {
+		
+		Intent intent = new Intent(this, south.class);
+		startActivity(intent);
+		
+
+	}
+
+public void maharashtra(View view) {
+	
+	Intent intent = new Intent(this, maharashtra.class);
+	startActivity(intent);
+	
+
+}
+
+public void punjabi(View view) {
+	
+	Intent intent = new Intent(this, punjabi.class);
+	startActivity(intent);
+	
+
+}
+
+public void gujrati(View view) {
+	
+	Intent intent = new Intent(this, gujrati.class);
+	startActivity(intent);
+	
+
+}
+
+}
