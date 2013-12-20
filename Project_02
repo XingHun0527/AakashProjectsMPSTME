@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form Layout</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport"
+		  content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+	<link rel="stylesheet" href="libs/dojo/dojox/mobile/themes/mpstme/mpstme.css" 
+type="text/css" media="screen" title="no title" charset="utf-8">
+	
+
+
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script type="text/javascript" src="libs/dojo/dojo/dojo.js"
+			data-dojo-config="async: true, parseOnLoad: true"></script>
+
+
+	<script type="text/javascript">
+		require([
+			"dojox/mobile",
+			"dojox/mobile/parser",
+			"dojox/mobile/compat",
+			"dojox/mobile/Button",
+			"dojox/mobile/CheckBox",
+			"dojox/mobile/ComboBox",
+			"dojox/mobile/RadioButton",
+			"dojox/mobile/Slider",
+			"dojox/mobile/TextBox",
+			"dojox/mobile/SearchBox",
+			"dojox/mobile/ExpandingTextArea",
+			"dojox/mobile/ToggleButton",
+			"dojox/mobile/FormLayout",
+			"dojox/mobile/RoundRectDataList",
+			"dojo/data/ItemFileReadStore"
+		]);
+
+
+	</script>
+</head>
+<body style="visibility:hidden;">
+<!-- Welcome Page -->
+<div dojoType="dojox.mobile.View" id="appWelcome" selected="true">
+    <h1 dojoType="dojox.mobile.Heading">MPSTME Alumni</h1>
+<div id="logo_image"><img src="images/alumni_logo.png" alt="ALumni Logo" Height="65%" width="100%" align="middle"></div>
+<div id="text"><h2 style="text-align:center">Welcome!</h2></div>
+    <ul dojoType="dojox.mobile.RoundRectList">
+        <li dojoType="dojox.mobile.ListItem" moveTo="accLogin" transition="slide"
+            onClick="itemClicked();">Login<li>
+    </ul>
+</div>
+<!-- Login Page -->
+<div dojoType="dojox.mobile.View" id="accLogin">
+    <h1 dojoType="dojox.mobile.Heading" back="Cancel" moveTo="appWelcome"
+        onClick="console.log('Going back');">Login</h1>
+        <div data-dojo-type="dojox.mobile.RoundRect" >
+        <div id="logo_image"><img src="images/front_page_pic.png" alt="Alumni Logo" Height="37%" width="100%" align="middle"></div>
+		<div data-dojo-type="dojox.mobile.FormLayout" data-dojo-props="rightAlign: false, columns:'single'">
+		<div>
+		<fieldset>
+<input id="usnm" data-dojo-type="dojox.mobile.TextBox" intermediateChanges="true" maxLength="10" size="20" placeholder="Username" style="{width:100%; height:10%}">
+		</fieldset>
+		</div>
+		<div>
+		<fieldset>
+		<input id="pass" type="password" data-dojo-type="dojox.mobile.TextBox" intermediateChanges="true" maxLength="20" placeholder="Password" style="{width:100%; height:40px}">
+		</fieldset>
+		</div>
+			<div>	
+				<fieldset>
+					<input type="submit" class="mblBlueButton" data-dojo-type="dojox.mobile.Button" value="Login" style="{width:100%}" onClick="loginOnClick();">
+				</fieldset>
+			</div>
+			</div>
+</div>
+</div>
+<!-- Main Menu Page -->
+<div dojoType="dojox.mobile.View" id="mainMenu">
+    <h1 dojoType="dojox.mobile.Heading" back="Logout" moveTo="accLogin"
+        onClick="console.log('Going back');">MPSTME Alumni</h1>
+            <ul dojoType="dojox.mobile.RoundRectList">
+                        <li dojoType="dojox.mobile.ListItem" moveTo="cseMV" transition="slide"
+            onClick="itemClicked();">Mission And Vision<li>
+        <li dojoType="dojox.mobile.ListItem" moveTo="userMsgs" transition="slide"
+            onClick="itemClicked();">Messages<li>
+         <li dojoType="dojox.mobile.ListItem" moveTo="alumniNl" transition="slide"
+            onClick="itemClicked();">Newsletter<li>
+            <li dojoType="dojox.mobile.ListItem" moveTo="accSet" transition="slide"
+            onClick="itemClicked();">Account Settings<li>
+
+    </ul>
+        </div>
+<!-- Mission And Vision Page -->
+<div dojoType="dojox.mobile.View" id="cseMV">
+    <h1 dojoType="dojox.mobile.Heading" back="Main Menu" moveTo="mainMenu"
+        onClick="console.log('Going back');">Messages</h1>
+            <ul dojoType="dojox.mobile.RoundRectList">
+        <div id="logo_image"><img src="images/cse_mv.png" alt="Alumni Logo" Height="100%" width="100%" ></div>
+    </ul>
+        </div>  
+<!-- Messages Page -->
+<div dojoType="dojox.mobile.View" id="userMsgs">
+    <h1 dojoType="dojox.mobile.Heading" back="Main Menu" moveTo="mainMenu"
+        onClick="console.log('Going back');">Messages</h1>
+            <ul dojoType="dojox.mobile.RoundRectList">
+        <li dojoType="dojox.mobile.ListItem" moveTo="#" transition="slide"
+            onClick="itemClicked();">Nirbhay Singh<li>
+         <li dojoType="dojox.mobile.ListItem" moveTo="#" transition="slide"
+            onClick="itemClicked();">Meet Patel<li>
+            <li dojoType="dojox.mobile.ListItem" moveTo="#" transition="slide"
+            onClick="itemClicked();">Keval Shah<li>
+    </ul>
+        </div>        
+<!-- Newsletter Page -->
+<div dojoType="dojox.mobile.View" id="alumniNl">
+    <h1 dojoType="dojox.mobile.Heading" back="Main Menu" moveTo="mainMenu"
+        onClick="console.log('Going back');">News Letters</h1>
+         <div data-dojo-type="dojo.data.ItemFileReadStore"
+            data-dojo-id="sampleStore" data-dojo-props='url:"jsonstore/newsl.json"'></div>
+<ul data-dojo-type="dojox.mobile.RoundRectDataList"
+            data-dojo-props='store:sampleStore, itemMap:{subject:"label", ndate:"rightText"}'>
+</ul>
+        </div>          
+<!-- Account Settings Page -->
+<div dojoType="dojox.mobile.View" id="accSet">
+    <h1 dojoType="dojox.mobile.Heading" back="Main Menu" moveTo="mainMenu"
+        onClick="console.log('Going back');">Account Settings</h1>
+            <ul dojoType="dojox.mobile.RoundRectList">
+        <li dojoType="dojox.mobile.ListItem" moveTo="mngProfile" transition="slide"
+            onClick="itemClicked();">Manage Profile <li>
+         <li dojoType="dojox.mobile.ListItem" moveTo="chgUsnm" transition="slide"
+            onClick="itemClicked();">Change Username<li>
+            <li dojoType="dojox.mobile.ListItem" moveTo="chgPass" transition="slide"
+            onClick="itemClicked();">Change Password<li>
+    </ul>
+        </div>  
+<!-- Manage Profile -->
+<div dojoType="dojox.mobile.View" id="mngProfile">
+    <h1 dojoType="dojox.mobile.Heading" back="Account Settings" moveTo="accSet"
+        onClick="console.log('Going back');">Manage Profile
+         <span data-dojo-type="dojox/mobile/ToolBarButton"
+        data-dojo-props='label:"Edit"'
+        style="float:right;"></span>
+        </h1>
+     <div id="logo_image"><img src="images/nirbhay_img_pic.jpg" alt="Profile Image" Height="300px" width="300px" align="middle"></div>
+<div id="lblname"><h2>Name:Nirbhay Singh</h2></div>
+<div id="lblbatch"><h2>Batch:2014</h2></div>
+<div id="lbldob"><h2>DOB:7/12/1991</h2></div>
+<div id="lblcourse"><h2>Course:B.Tech</h2></div>
+<div id="lblstream"><h2>Stream:Computer Engineering</h2></div>
+<div id="lblAddress"><h2>Address:101 Vasundhara Suraj, Thakur Village Kandivali East Mumbai 400101</h2></div>
+        </div>          
+
+
+<!-- Change Username Page -->
+<div dojoType="dojox.mobile.View" id="chgUsnm">
+    <h1 dojoType="dojox.mobile.Heading" back="Account Settings" moveTo="accSet"
+        onClick="console.log('Going back');">Account Settings
+                 <span data-dojo-type="dojox/mobile/ToolBarButton"
+        data-dojo-props='label:"Done"'
+        style="float:right;" moveTo="accSet"></span>
+        </h1>
+  <div data-dojo-type="dojox.mobile.FormLayout" data-dojo-props="rightAlign: false, columns:'single'">
+		<div>
+
+		<fieldset>
+<input id="cusnm" data-dojo-type="dojox.mobile.TextBox" intermediateChanges="true" maxLength="10" size="20" value="Nirbhay" placeholder="Username" style="{width:100%; height:10%}">
+		</fieldset>
+		</div>
+		</div>
+        </div>  
+<!-- Change Password Page -->
+<div dojoType="dojox.mobile.View" id="chgPass">
+    <h1 dojoType="dojox.mobile.Heading" back="Account Settings" moveTo="accSet"
+        onClick="console.log('Going back');">Account Settings
+                 <span data-dojo-type="dojox/mobile/ToolBarButton"
+        data-dojo-props='label:"Done"'
+        style="float:right;" moveTo="accSet"></span>
+        </h1>
+                <div data-dojo-type="dojox.mobile.RoundRect" >
+  <div data-dojo-type="dojox.mobile.FormLayout" data-dojo-props="rightAlign: false, columns:'single'">
+		<div>
+
+		<fieldset>
+<input id="ccpass" data-dojo-type="dojox.mobile.TextBox" intermediateChanges="true" maxLength="10" size="20" placeholder="Current Password" >
+</fieldset>
+<fieldset>
+<input id="cnpass" data-dojo-type="dojox.mobile.TextBox" intermediateChanges="true" maxLength="10" size="20" placeholder="New Password" >
+</fieldset>
+<fieldset>
+<input id="ccnpass" data-dojo-type="dojox.mobile.TextBox" intermediateChanges="true" maxLength="10" size="20" placeholder="Confirm New Password" >
+		</fieldset>
+		</div>
+		</div>
+		</div>
+        </div>  
+        <script type="text/javascript">
+function itemClicked() {
+  console.log("itemClicked()");
+}
+</script>
+<script type="text/javascript">
+function loginOnClick() {
+	var usernm=usnm.value;
+var upass=pass.value;
+if((usernm=="Nirbhay")&&(upass=="1234"))
+	{
+
+   
+	dijit.registry.byId("accLogin").performTransition("#mainMenu",1,"slide");
+	}
+else
+	{
+	alert("Invalid Username Or Password!");
+	}
+}
+</script>
+
+
+</body>
+</html>
