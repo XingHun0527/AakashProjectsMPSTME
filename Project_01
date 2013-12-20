@@ -1,0 +1,801 @@
+HelloADK Manifest.xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.helloadk"
+    android:versionCode="2"
+    android:versionName="1.0"
+     >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="17" />
+    
+    <uses-feature android:name="android.hardware.usb.accessory"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" 
+        
+        >
+        
+        
+        <uses-library android:name="com.android.future.usb.accessory"/>
+        <activity
+            android:name="com.example.helloadk.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
+            </intent-filter>
+            <meta-data android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
+                android:resource="@xml/myfilter"/>
+        </activity>
+    </application>
+
+</manifest>
+
+
+
+
+MainActivity.java
+/*
+ * manufacturer="LogiScope inc."
+ * model="LogiScope"
+ * version="0.3"
+ */
+
+package com.example.helloadk;
+
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import com.android.future.usb.UsbAccessory;
+import com.android.future.usb.UsbManager;
+
+import android.R.color;
+import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Color;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+import android.widget.Toast;
+import java.util.Timer;
+import java.util.TimerTask;
+
+
+
+
+public class MainActivity extends Activity {
+	
+	EditText textOut;
+	Button btnSend;
+	private ToggleButton toggleButton1, toggleButton2,toggleButton3,toggleButton4,toggleButton5;
+	private ToggleButton toggleButton6,toggleButton7,toggleButton8;
+	private ToggleButton t1,t2,t3,t4,t5,t6,t7,t8;
+	TextView text1,text2,text3,text4,text5,text6,text7,text8;
+	private UsbManager myUsbManager;
+	private UsbAccessory myUsbAccessory;
+	private ParcelFileDescriptor myParcelFileDescriptor;
+	private FileInputStream myFileInputStream;
+	private FileOutputStream myFileOutputStream;
+	
+	private static int RQS_USB_PERMISSION = 0;
+	private static final String ACTION_USB_PERMISSION = "com.example.helloadk.usb_permission";
+	private PendingIntent PendingIntent_UsbPermission;
+	
+	boolean firstRqsPermission;
+	byte[] buffer = new byte[255];
+	char u=0xaa;
+	String low="Low";
+	String high="High";
+	char mess=0x00;
+	char toggle=0x00;
+	char value=0x00;
+	static char header=0xaa;
+	int flag=0;
+	public static boolean checkbit(char value,int pos)
+	{
+	    if((value & (0x01<<pos))>0)
+	{
+		return true;
+	}
+	else
+	{
+	return false;
+	}
+	}
+	public static char setbit(char a, int pos,int val)
+	{
+	if(val!=0)
+	{
+		a|=(0x01<<pos);
+	}
+	else
+	{
+		a&=(~(0x01<<pos));
+	}
+	return a;
+	}
+	
+	
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		btnSend = (Button)findViewById(R.id.btnsend);
+		toggleButton1 = (ToggleButton) findViewById(R.id.toggleButton1);
+		toggleButton2 = (ToggleButton) findViewById(R.id.toggleButton2);
+		toggleButton3 = (ToggleButton) findViewById(R.id.toggleButton3);
+		toggleButton4 = (ToggleButton) findViewById(R.id.toggleButton4);
+		toggleButton5 = (ToggleButton) findViewById(R.id.toggleButton5);
+		toggleButton6 = (ToggleButton) findViewById(R.id.toggleButton6);
+		toggleButton7 = (ToggleButton) findViewById(R.id.toggleButton7);
+		toggleButton8 = (ToggleButton) findViewById(R.id.toggleButton8);
+		t1 = (ToggleButton) findViewById(R.id.t1);
+		t2 = (ToggleButton) findViewById(R.id.t2);
+		t3 = (ToggleButton) findViewById(R.id.t3);
+		t4 = (ToggleButton) findViewById(R.id.t4);
+		t5 = (ToggleButton) findViewById(R.id.t5);
+		t6 = (ToggleButton) findViewById(R.id.t6);
+		t7 = (ToggleButton) findViewById(R.id.t7);
+		t8 = (ToggleButton) findViewById(R.id.t8);
+		text1 = (TextView)findViewById(R.id.text1);
+		text2 = (TextView)findViewById(R.id.text2);
+		text3 = (TextView)findViewById(R.id.text3);
+		text4 = (TextView)findViewById(R.id.text4);
+		text5 = (TextView)findViewById(R.id.text5);
+		text6 = (TextView)findViewById(R.id.text6);
+		text7 = (TextView)findViewById(R.id.text7);
+		text8 = (TextView)findViewById(R.id.text8);	
+		Timer t = new Timer();
+		myUsbManager = UsbManager.getInstance(this);
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction(UsbManager.ACTION_USB_ACCESSORY_DETACHED);
+		registerReceiver(myUsbReceiver, intentFilter);
+		
+		//Ask USB Permission from user
+		Intent intent_UsbPermission = new Intent(ACTION_USB_PERMISSION);
+		PendingIntent_UsbPermission = PendingIntent.getBroadcast(
+				this, 					//context
+				RQS_USB_PERMISSION, 	//request code
+				intent_UsbPermission,	//intent 
+				0);						//flags
+		IntentFilter intentFilter_UsbPermission = new IntentFilter(ACTION_USB_PERMISSION);
+		registerReceiver(myUsbPermissionReceiver, intentFilter_UsbPermission);
+		
+		
+		  TimerTask task = new TimerTask()
+	      {
+	        public void run()
+	         {
+	        	sendText(header);
+				sendText(toggle);
+				sendText(value);
+	         }
+	      };
+		t. scheduleAtFixedRate(task,0,5000); 
+		
+		toggleButton1.setOnClickListener(new OnClickListener() {
+		@Override
+		public void onClick(View v) 
+		{
+			if(toggleButton1.isChecked())
+			{
+			text1.setVisibility(View.INVISIBLE);
+			t1.setVisibility(View.VISIBLE);
+			toggle=setbit(toggle,0,1);
+			sendText(header);
+			sendText(toggle);
+			sendText(value);
+			}
+			else
+			{
+				text1.setVisibility(View.VISIBLE);
+				t1.setVisibility(View.INVISIBLE);
+				toggle=setbit(toggle,0,0);
+				sendText(header);
+				sendText(toggle);
+				sendText(value);
+			}
+		}	
+		});
+		t1.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) 
+			{
+				if(t1.isChecked())
+				{
+				value=setbit(value,0,1);
+				sendText(header);
+				sendText(toggle);
+				sendText(value);
+				}
+				else
+				{
+				value=setbit(value,0,0);
+				sendText(header);
+				sendText(toggle);
+				sendText(value);
+				}
+			}	
+			});
+		toggleButton2.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) 
+			{
+				if(toggleButton2.isChecked())
+				{
+				text2.setVisibility(View.INVISIBLE);
+				t2.setVisibility(View.VISIBLE);
+				toggle=setbit(toggle,1,1);
+				sendText(header);
+				sendText(toggle);
+				sendText(value);
+				}
+				else
+				{
+					text2.setVisibility(View.VISIBLE);
+					t2.setVisibility(View.INVISIBLE);
+					toggle=setbit(toggle,1,0);
+					sendText(header);
+					sendText(toggle);
+					sendText(value);
+				}
+			}	
+			});
+			t2.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) 
+				{
+					if(t2.isChecked())
+					{
+					value=setbit(value,1,1);
+					sendText(header);
+					sendText(toggle);
+					sendText(value);
+					}
+					else
+					{
+					value=setbit(value,1,0);
+					sendText(header);
+					sendText(toggle);
+					sendText(value);
+					}
+				}	
+				});
+			toggleButton3.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) 
+				{
+					if(toggleButton3.isChecked())
+					{
+					text3.setVisibility(View.INVISIBLE);
+					t3.setVisibility(View.VISIBLE);
+					toggle=setbit(toggle,2,1);
+					sendText(header);
+					sendText(toggle);
+					sendText(value);
+					}
+					else
+					{
+						text3.setVisibility(View.VISIBLE);
+						t3.setVisibility(View.INVISIBLE);
+						toggle=setbit(toggle,2,0);
+						sendText(header);
+						sendText(toggle);
+						sendText(value);
+					}
+				}	
+				});
+				t3.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) 
+					{
+						if(t3.isChecked())
+						{
+						value=setbit(value,2,1);
+						sendText(header);
+						sendText(toggle);
+						sendText(value);
+						}
+						else
+						{
+						value=setbit(value,2,0);
+						sendText(header);
+						sendText(toggle);
+						sendText(value);
+						}
+					}	
+					});
+				toggleButton4.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) 
+					{
+						if(toggleButton4.isChecked())
+						{
+						text4.setVisibility(View.INVISIBLE);
+						t4.setVisibility(View.VISIBLE);
+						toggle=setbit(toggle,3,1);
+						sendText(header);
+						sendText(toggle);
+						sendText(value);
+						}
+						else
+						{
+							text4.setVisibility(View.VISIBLE);
+							t4.setVisibility(View.INVISIBLE);
+							toggle=setbit(toggle,3,0);
+							sendText(header);
+							sendText(toggle);
+							sendText(value);
+						}
+					}	
+					});
+					t4.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) 
+						{
+							if(t4.isChecked())
+							{
+							value=setbit(value,3,1);
+							sendText(header);
+							sendText(toggle);
+							sendText(value);
+							}
+							else
+							{
+							value=setbit(value,3,0);
+							sendText(header);
+							sendText(toggle);
+							sendText(value);
+							}
+						}	
+						});
+					toggleButton5.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) 
+						{
+							if(toggleButton5.isChecked())
+							{
+							text5.setVisibility(View.INVISIBLE);
+							t5.setVisibility(View.VISIBLE);
+							toggle=setbit(toggle,4,1);
+							sendText(header);
+							sendText(toggle);
+							sendText(value);
+							}
+							else
+							{
+								text5.setVisibility(View.VISIBLE);
+								t5.setVisibility(View.INVISIBLE);
+								toggle=setbit(toggle,4,0);
+								sendText(header);
+								sendText(toggle);
+								sendText(value);
+							}
+						}	
+						});
+						t5.setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View v) 
+							{
+								if(t5.isChecked())
+								{
+								value=setbit(value,4,1);
+								sendText(header);
+								sendText(toggle);
+								sendText(value);
+								}
+								else
+								{
+								value=setbit(value,4,0);
+								sendText(header);
+								sendText(toggle);
+								sendText(value);
+								}
+							}	
+							});
+						toggleButton6.setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View v) 
+							{
+								if(toggleButton6.isChecked())
+								{
+								text6.setVisibility(View.INVISIBLE);
+								t6.setVisibility(View.VISIBLE);
+								toggle=setbit(toggle,5,1);
+								sendText(header);
+								sendText(toggle);
+								sendText(value);
+								}
+								else
+								{
+									text6.setVisibility(View.VISIBLE);
+									t6.setVisibility(View.INVISIBLE);
+									toggle=setbit(toggle,5,0);
+									sendText(header);
+									sendText(toggle);
+									sendText(value);
+								}
+							}	
+							});
+							t6.setOnClickListener(new OnClickListener() {
+								@Override
+								public void onClick(View v) 
+								{
+									if(t6.isChecked())
+									{
+									value=setbit(value,5,1);
+									sendText(header);
+									sendText(toggle);
+									sendText(value);
+									}
+									else
+									{
+									value=setbit(value,5,0);
+									sendText(header);
+									sendText(toggle);
+									sendText(value);
+									}
+								}	
+								});
+							toggleButton7.setOnClickListener(new OnClickListener() {
+								@Override
+								public void onClick(View v) 
+								{
+									if(toggleButton7.isChecked())
+									{
+									text7.setVisibility(View.INVISIBLE);
+									t7.setVisibility(View.VISIBLE);
+									toggle=setbit(toggle,6,1);
+									sendText(header);
+									sendText(toggle);
+									sendText(value);
+									}
+									else
+									{
+										text7.setVisibility(View.VISIBLE);
+										t7.setVisibility(View.INVISIBLE);
+										toggle=setbit(toggle,6,0);
+										sendText(header);
+										sendText(toggle);
+										sendText(value);
+									}
+								}	
+								});
+								t7.setOnClickListener(new OnClickListener() {
+									@Override
+									public void onClick(View v) 
+									{
+										if(t7.isChecked())
+										{
+										value=setbit(value,6,1);
+										sendText(header);
+										sendText(toggle);
+										sendText(value);
+										}
+										else
+										{
+										value=setbit(value,6,0);
+										sendText(header);
+										sendText(toggle);
+										sendText(value);
+										}
+									}	
+									});
+								toggleButton8.setOnClickListener(new OnClickListener() {
+									@Override
+									public void onClick(View v) 
+									{
+										if(toggleButton8.isChecked())
+										{
+										text8.setVisibility(View.INVISIBLE);
+										t8.setVisibility(View.VISIBLE);
+										toggle=setbit(toggle,7,1);
+										sendText(header);
+										sendText(toggle);
+										sendText(value);
+										}
+										else
+										{
+											text8.setVisibility(View.VISIBLE);
+											t8.setVisibility(View.INVISIBLE);
+											toggle=setbit(toggle,7,0);
+											sendText(header);
+											sendText(toggle);
+											sendText(value);
+										}
+									}	
+									});
+									t8.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) 
+										{
+											if(t8.isChecked())
+											{
+											value=setbit(value,7,1);
+											sendText(header);
+											sendText(toggle);
+											sendText(value);
+											}
+											else
+											{
+											value=setbit(value,7,0);
+											sendText(header);
+											sendText(toggle);
+											sendText(value);
+											}
+										}	
+										});
+		firstRqsPermission = true;
+		
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		if(myFileInputStream == null || myFileOutputStream == null){
+			
+			UsbAccessory[] usbAccessoryList = myUsbManager.getAccessoryList();
+			UsbAccessory usbAccessory = null;
+			if(usbAccessoryList != null){
+				usbAccessory = usbAccessoryList[0];
+				if(usbAccessory != null){
+					if(myUsbManager.hasPermission(usbAccessory)){
+						//already have permission
+						OpenUsbAccessory(usbAccessory);
+					}else{
+						
+						if(firstRqsPermission){
+							
+							firstRqsPermission = false;
+							
+							//request permission
+							Toast.makeText(MainActivity.this, 
+									"ask for permission", 
+									Toast.LENGTH_LONG).show();
+							
+							synchronized(myUsbReceiver){
+								myUsbManager.requestPermission(usbAccessory, 
+										PendingIntent_UsbPermission);
+							}
+						}
+						
+					}
+				}
+			}
+		}
+	}
+	
+	Runnable myRunnable = new Runnable(){
+
+		@Override
+		public void run() {
+			int numberOfByteRead = 0;
+			
+			
+			while(numberOfByteRead >= 0){
+				
+				try {
+					numberOfByteRead = myFileInputStream.read(buffer, 0, 1);
+					runOnUiThread(new Runnable(){
+
+						@Override
+						public void run() {
+							if(checkbit((char) buffer[0],0)==true)
+							{
+							text1.setText(high);
+							text1.setTextColor(Color.GREEN);
+							}
+							else
+							{		
+							text1.setText(low);
+							text1.setTextColor(Color.RED);									
+							}
+							if(checkbit((char) buffer[0],1))
+							{
+								text2.setText(high);
+								text2.setTextColor(Color.GREEN);
+								}
+								else
+								{	
+								text2.setText(low);
+								text2.setTextColor(Color.RED);									
+								}
+							if(checkbit((char) buffer[0],2))
+							{
+								text3.setText(high);
+								text3.setTextColor(Color.GREEN);
+								}
+								else
+								{	
+								text3.setText(low);
+								text3.setTextColor(Color.RED);									
+								}
+							if(checkbit((char) buffer[0],3))
+							{
+								text4.setText(high);
+								text4.setTextColor(Color.GREEN);
+								}
+								else
+								{	
+								text4.setText(low);
+								text4.setTextColor(Color.RED);									
+								}
+							if(checkbit((char) buffer[0],4))
+							{
+								text5.setText(high);
+								text5.setTextColor(Color.GREEN);
+								}
+								else
+								{	
+								text5.setText(low);
+								text5.setTextColor(Color.RED);									
+								}
+							if(checkbit((char) buffer[0],5))
+							{
+								text6.setText(high);
+								text6.setTextColor(Color.GREEN);
+								}
+								else
+								{		
+								text6.setText(low);
+								text6.setTextColor(Color.RED);									
+								}
+							if(checkbit((char) buffer[0],6))
+							{
+								text7.setText(high);
+								text7.setTextColor(Color.GREEN);
+								}
+								else
+								{		
+								text7.setText(low);
+								text7.setTextColor(Color.RED);									
+								}
+							if(checkbit((char) buffer[0],7))
+							{
+								text8.setText(high);
+								text8.setTextColor(Color.GREEN);
+								}
+								else
+								{		
+								text8.setText(low);
+								text8.setTextColor(Color.RED);									
+								}
+						}});
+					
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					break;
+				}
+			}
+		}
+		
+	};
+	
+	private void OpenUsbAccessory(UsbAccessory acc){
+		myParcelFileDescriptor = myUsbManager.openAccessory(acc);
+		if(myParcelFileDescriptor != null){
+			myUsbAccessory = acc;
+			FileDescriptor fileDescriptor = myParcelFileDescriptor.getFileDescriptor();
+			myFileInputStream = new FileInputStream(fileDescriptor);
+			myFileOutputStream = new FileOutputStream(fileDescriptor);
+			Thread thread = new Thread(myRunnable);
+			thread.start();
+		}
+	}
+	
+	private void closeUsbAccessory(){
+		
+		if(myParcelFileDescriptor != null){
+			try {
+				myParcelFileDescriptor.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		myParcelFileDescriptor = null;
+		myUsbAccessory = null;
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		closeUsbAccessory();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		unregisterReceiver(myUsbReceiver);
+		unregisterReceiver(myUsbPermissionReceiver);
+		this.finish();
+	}
+	
+	private BroadcastReceiver myUsbReceiver = new BroadcastReceiver(){
+		
+		@Override
+		public void onReceive(Context context, Intent intent) {
+
+			String action = intent.getAction();
+			if(action.equals(UsbManager.ACTION_USB_ACCESSORY_DETACHED)){
+				
+				Toast.makeText(MainActivity.this, 
+						"onReceive: ACTION_USB_ACCESSORY_DETACHED", 
+						Toast.LENGTH_LONG).show();
+				
+				UsbAccessory usbAccessory = UsbManager.getAccessory(intent);
+				
+				if(usbAccessory!=null && usbAccessory.equals(myUsbAccessory)){
+					closeUsbAccessory();
+					android.os.Process.killProcess(android.os.Process.myPid());
+				}
+			}
+		}
+	};
+	
+	private BroadcastReceiver myUsbPermissionReceiver = new BroadcastReceiver(){
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if(action.equals(ACTION_USB_PERMISSION)){
+
+				synchronized(this){
+					UsbAccessory usbAccessory = UsbManager.getAccessory(intent);
+					
+					if(intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)){
+						OpenUsbAccessory(usbAccessory);
+						
+						Toast.makeText(MainActivity.this, 
+								"ACTION_USB_PERMISSION accepted", 
+								Toast.LENGTH_LONG).show();
+					}else{
+						Toast.makeText(MainActivity.this, 
+								"ACTION_USB_PERMISSION rejected", 
+								Toast.LENGTH_LONG).show();
+						finish();
+					}
+				}
+			}
+		}
+		
+	};
+
+	private void sendText(char text){
+
+		if(myFileOutputStream != null){
+			
+			try {
+				myFileOutputStream.write(text);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+	}
+
+}
