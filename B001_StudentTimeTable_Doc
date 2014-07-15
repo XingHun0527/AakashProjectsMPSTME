@@ -1,0 +1,412 @@
+
+
+
+STUDENT TIMETABLE PLANNER
+
+A Mini-Project Report
+Under 
+Project Workshop
+
+Submitted by
+
+Pranav Swaminathan (B001)
+Ronak Bhatia (B014)
+Tejas Dani (B019)
+Under The Guidance Of
+
+Prof. Dhirendra S Mishra
+
+In partial fulfillment for the award of the degree
+Of
+
+Bachelor of Technology
+IN
+Computer Science
+
+At
+NMIMS’ MUKESH PATEL SCHOOL OF TECHNOLOGY MANAGEMENT AND ENGINEERING, MUMBAI
+
+April 2014
+
+
+
+
+CERTIFICATE
+
+This is to certify that the project entitled “Student Timetable Planner” is the bonafide work carried out by Pranav Swaminathan , Ronak Bhatia , Tejas Dani of B.Tech (Computer Engineering), MPSTME (NMIMS), Mumbai, during the VI semester of the academic year 2013-14, in partial fulfillment of the requirements for the award of the Degree of Bachelors of Technology as per the norms prescribed by NMIMS. The mini-project work has been assessed and found to be satisfactory.
+
+
+
+
+
+___________________
+  Prof. Dhirendra S Mishra
+   Internal Mentor		
+
+_______________________						________________________
+Examiner 1								Examiner 2
+
+
+________________________
+						Dean
+					    Dr. S. Y. Mhaiskar
+
+
+DECLARATION
+
+We, Pranav Swaminathan , Ronak Bhatia , Tejas Dani , B.Tech (Computer Engineering), VI semester understand that plagiarism is defined as anyone or combination of the following:
+1.	Un-credited verbatim copying of individual sentences, paragraphs or illustration (such as graphs, diagrams, etc.) from any source, published or unpublished, including the internet.
+2.	Un-credited improper paraphrasing of pages paragraphs (changing a few words phrases, or rearranging the original sentence order)
+3.	I have made sure that all the ideas, expressions, graphs, diagrams, etc., that are not a result of my work, are properly credited. Long phrases or sentences that had to be used verbatim from published literature have been clearly identified using quotation marks.
+4.	I affirm that no portion of my work can be considered as plagiarism and I take full responsibility if such a complaint occurs. I understand fully well that the guide of the seminar/ project report may not be in a position to check for the possibility of such incidences of plagiarism in this body of work.
+
+
+Signature of the Student
+Name: Pranav Swaminathan
+Roll No. B001
+Place: Mumbai
+Date:	Signature of the                    Signature of the Student                                  Student
+Name: Ronak Bhatia             Name: Tejas Dani
+Roll No. B014                       Roll No. B019
+Place: Mumbai                      Place: Mumbai
+Date:                                     Date:
+	
+
+Table of contents
+
+
+CHAPTER NO. 			TITLE 				PAGE NO.
+
+
+List of Figures 				i
+Abstract					ii
+1. 					INTRODUCTION                           1-2
+1.1 Project Overview                        
+1.2 Hardware Specification               
+1.3 Software Specification                 
+2.					INSTALLATION & SETUP            3-5
+2.1 Installing ADT
+2.2 Set Up
+3. 					ANALYSIS & DESIGN                   6-10
+					3.1 ANALYSIS
+					3.2 DESIGN
+4.					PROJECT IN DETAIL                   11-22
+5.					CONCLUSION &                           23-24 
+FUTURE SCOPE
+REFERENCES
+List of Figures
+CHAPTER NO. 			TITLE 				PAGE NO.
+2. 					INSTALLATION AND SETUP      3-5   
+Fig2.1 Install prompt screen
+Fig2.2 Install process screen 
+Fig 2.3Install finished screen
+
+3. 					ANALYSIS AND DESIGN             7-10
+		Fig 3.1  Use case diagram
+		Fig 3.2 Sequence diagram
+		Fig 3.3 Data Flow Diagram
+
+4.					PROJECT IN DETAIL                  11-22
+					4.1Home Screen
+					4.2 Functionalities
+					4.3 Add Subject
+					4.4 Subject List
+					4.5 Add Lesson 
+					4.6 Subject List
+					4.7 Day List 
+					4.8 Pick Time
+					4.9 Edit and Delete
+					4.10 Color Wheel 
+					4.11Clear Timetable	
+					4.12 Cleared Timetable
+Abstract
+
+Student Timetable Planner is a timetable app which is basically an easy way for the student to store their weekly semester timetable a click of a button away. It is an easy to use app in which the user just has to feed in the details once and the timetable gets displayed. We’re ready to incorporate changes in our app if any bugs are brought to notice. This system will consist of just one main part which is the mobile application. There will be no need for an external server as this is a user centric app and every user will have their own data entries. As this application is being designed specifically for students, there will be only one kind of user which will be the students. The app is going to be generic and hence every student who uses it can use it to their own comfort as there are no generalized fields here. Each student will enter their own timetables of the week , lecture lists , assignment reminders etc. 
+1.	INTRODUCTION
+1.1	Project Overview
+The software that is being developed is to allow users to keep their weekly timetable at an arms length and also to keep a track of any tasks or notes associated with any subject. It is convenient as every student carries a smartphone  nowadays . It also will allow students to keep a track of the location of a particular lecture (ex classroom number , etc) which will make it easier for them to manage their time.
+This is a small application that takes about 2 Megabytes running on Android 3.0 (Honeycomb) or higher. It is a processor intensive application and will respond according to the processor speed of the device, greater the speed much faster the application will respond. 
+We are ready to incorporate changes in our app if any bugs are brought to notice. 	
+
+
+1.2	Hardware Requirements
+Recommend 2GB memory for IDE and 2GB if running server locally
+
+1.3	Software Requirements
+Operating Systems
+•	Windows XP (32-bit), Vista (32- or 64-bit), or Windows 7 (32- or 64-bit)
+•	Mac OS X 10.5.8 or later (x86 only)
+•	Linux (tested on Ubuntu Linux, Lucid Lynx) 
+•	GNU C Library (glibc) 2.7 or later is required.
+•	On Ubuntu Linux, version 8.04 or later is required..
+ Eclipse IDE
+
+•	Eclipse 3.7.2 (Indigo) or greater 
+Note: Eclipse 3.6 (Helios) is no longer supported with the latest version of ADT.
+•	Eclipse JDT plugin (included in most Eclipse IDE packages) 
+•	JDK 6 (JRE alone is not sufficient)
+•	Android Development Tools plugin (recommended)
+•	Not compatible with GNU Compiler for Java (gcj)
+         Other development environments
+•	JDK 6 (JRE alone is not sufficient)
+•	Apache Ant 1.8 or later
+•	Not compatible with Gnu Compiler for Java (gcj)
+Note: Some Linux distributions may include JDK 1.4 or Gnu Compiler for Java, both of which are not supported for Android development. 
+2.	 INSTALLATION AND SETUP
+
+The application will be uploaded in the playstore till then the user should have the apk to install the application.
+1.	There are no special permissions like internet access preferences, etc required as this is a localized standalone app and hence when the user chooses to install the app they are greeted with this screen.(fig 2.1) 
+
+ 
+Fig 2.1 Install prompt screen
+
+2.	After the user clicks on the ‘Install’ button, the app will start getting installed on the user’s device.(fig 2.2) 
+
+ 
+Fig 2.2 Install process screen 
+
+
+3.	Once the application is installed the user has to click open button to view the application.(fig 2.3)
+
+ 
+FIG 2.3 INSTALL FINISHED SCREEN
+
+
+3.	ANALYSIS & DESIGN
+3.1	ANALYSIS
+3.1.3	External Interface Requirements
+The application requires various interfaces in order to effectively communicate with the human user. These interfaces may include user interface, hardware interface and software interface.
+ 
+User Interfaces
+This interface is built for the basic purpose of interaction with the user and the system. This interface helps the user to enter the timetable details and tasks , reminders and also edit the timetable if need be.
+
+Hardware Interfaces 
+The hardware interface required for this purpose has to be any electrical device, a handset or a tablet, that can support android applications that require a software interface of a minimum of version 2.2.
+
+Software Interfaces 
+The software interfaces involved are the electrical devices that support the android version 2.2 to 4.2. This is important because the application in hand is being developed for the specific android versions as given above. For any other version of android the application will not be compatible.
+ 
+
+3.1.4	Functional Requirements
+The main functional requirement of this app will be that the user has to enter their timetable into the system on first use. The app is a timetable app which means it helps the students keep a track of their lectures and other college commitments. This cannot be done without the timetable of the student as only after the student enters the timetable will the app be able to sync the reminders for a particular subject and its corresponding lecture on a particular day of the week.
+
+
+
+
+3.1.5	Use Cases
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+User	
+
+Figure 1:Use case Diagram
+
+
+
+
+
+
+
+
+Fig 3.1 USE CASE DIAGRAM
+
+
+
+
+
+
+
+
+
+
+
+
+3.1.4 Non-Functional Requirements 
+
+Performance
+The application should be able to handle large amounts of data storage without the operating system functionality displaying delays.
+
+Reliability
+This application should have a direct connection with the system’s database of all the apps on the android device, it should be connected such that the information displayed should be directly from the database or derived from the database in some way.
+
+Availability
+This application will be available to all the users who use the android version of atleast 
+
+Security
+This application should be implemented and opened in such a way that no other user is able to access the user’s applications. Meaning, password protection should be provided.
+
+Maintainability
+This application requires minimal amount of system memory. This application does not interrupt any of the system functions. Therefore the system functionality will not be affected by this application. 
+
+Portability
+This application can be used in android operating system version 2.2 and higher, hence any system that satisfies the above can be used for running this application. Hence this application displays a large amount of portability.
+
+	     Design Constraints
+This application has a few constraints. It cannot learn which words user has mastered and change frequency of its occurrence. 
+
+
+
+
+
+
+Sequence Diagram
+
+
+
+
+
+
+ 
+Figure 3.2: Sequence Diagram
+
+
+
+
+Here, we add a timetable by adding a list of subjects which get added into the local database of the app. After adding the respective subjects, we can start making the timetable by selecting the particular subject on a particular day along with the time. The arrows show the flow of the app.
+
+
+Level 0 Data Flow Diagram (DFD)
+
+
+
+
+
+
+	
+	Default T.T	View Time Table
+
+
+
+
+	
+	Enter Time            Edit 	Give Alarm about                             Provide a Yearly Calendar
+                                                   T.T               different classes
+
+                        Table
+
+
+Figure 3.3: Data Flow Diagram
+
+
+
+
+
+
+
+
+
+
+
+4.	PROJECT IN DETAIL
+Our project is mainly aimed at students who want to have an easy way of storing their timetable with them. The app has a local database which stores the list of subjects . This app is a localized app and does not require any active internet connection in order to work. 
+4.1.   A WALK THROUGH THE ENTIRE PROJECT: 
+1. This is the first page or the opening page of the app. This is the page which the user sees on starting the app. It displays the Timetable of the student in a day to day format.(fig 4.1) 
+
+ 
+FIG 4.1 Home Screen
+
+2. This shows the pop up which gives us an overview of the functionalities of the app. (fig 4.2)
+
+
+.  
+Fig 4.2 Functionalities
+3. This photo shows the add subject module which allows the user to add details of each subject in their curriculum. The color picker module is used to denote specific colors to each subject which helps in distinguishing two subjects.(fig 4.3) 
+
+
+
+ 
+Fig 4.3 Add Subject
+
+
+
+
+
+
+4.	This image shows the list of all the subjects that have been  added  so far. Here, as you can see above we also have the option to add another subject.(fig 4.4)
+
+ 
+Fig 4.4 Subject List
+
+
+
+5.	This image shows the add lesson feature where we can add a classroom number corresponding to where the particular lecture is going to be held and repeat the same lectures on consecutive days.(fig 4.5)
+ 
+Fig 4.5 Add Lesson
+
+
+6. When we click on Add lesson, we get the list of all the subjects that we have added. Depending on the user’s choice, he can select any one of the list.(fig 4.6)
+ 
+Fig 4.6 Subject List
+7. When we click on the day tab then the following list appears. As we select a subject, we can then select the particular day on which the subject is going to be conducted.(fig 4.7)
+
+ 
+Fig 4.7 Day List
+
+
+8. This shows the time set image. The duration of the subject lecture can be set below.(4.8)
+
+ 
+Fig 4.8 Pick Time
+
+9. When we long press on any subject, then the following options appear. This can also be achieved by pressing the option button on the phone/emulator. We can here edit the lesson or delete the lesson.(fig 4.9)
+
+ 
+Fig 4.9 Edit and Delete
+
+
+
+
+10. This image shows the color wheel which is an easy way to denote a color representation to a particular subject.(fig 4.10) 
+ 
+Fig 4.10 Color Wheel
+
+
+11. Once a term is over and a new term begins , the student can use the delete all feature to clear the entire timetable and enter the new one . On selecting to delete all, the user is first prompted with a confirmation request as shown below.(fig 4.11)
+
+ 
+Fig 4.11 Clear timetable
+
+
+Here we can see a subject in the background. Once the user chooses “yes” the subject gets erased from the timetable and we get a blank layout as shown below. 
+
+ 
+Fig 4.12 Cleared Timetable
+
+
+
+
+
+
+
+
+
+
+5.	CONCLUSION & FUTURE SCOPE
+
+5.1	  CONCLUSION
+
+Thus we have made an Android Application named “STUDENT PLANNER” for the user who want to record their time table.The application displays a set of subjects that the user enters. Apart from the subjects to be entered, the days on which these subjects occur can also be added. The database of subjects is purely by the user’s entry. Apart from subjects, the color used for defining each subject is also stored in the database.
+5.2	FUTURE SCOPE OF THE PROJECT
+This is not the complete application. Though we have implemented different features but there are some more features that can be added to the application. 
+Some of the features that could be added are:
+1.	Adding a task to a particular subject and getting timely updates from the app so that could remind the student about the exact timing and any assignment due for the lecture.
+2.	 Having an inbuilt default time table so that the user can refer to It without additional entries. Having a list of holidays and exams which would prove beneficial to the user.
+Suggestions from users regarding new features into our application or improving the quality of our application are welcome, and we’ll try our best to incorporate all of them in our application. 
+ 
+REFERENCES
+
+[1]. http://stackoverflow.com/questions/21950617/there-seems-to-be-an-error-in-sending-data-back-from-child-app-to-parent-app?noredirect=1#comment33353182_21950617 
+[2]. http://stackoverflow.com/questions/22174269/how-to-ensure-that-dynamically-created-tabs-with-same-layout-retain-separate-edi/22175267?noredirect=1#22175267 
+[3]. http://developer.android.com/training/index.html 
+
