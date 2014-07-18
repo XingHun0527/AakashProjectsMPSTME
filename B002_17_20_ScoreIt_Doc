@@ -1,0 +1,266 @@
+Application ScoreIt!
+ANDROID APPLICATION –  ScoreIt! 
+ 
+ A Mini-Project Report 
+Under  Project Workshop 
+ Submitted by 
+ Anuj Chopra 
+John Jacob Siddhant Deshmukh 
+ 
+ Under The Guidance Of 
+ Prof Praveen Shreenath  
+  
+in partial fulfillment for the award of the degree of 
+ 
+B. Tech 
+IN Computer Science 
+ at 
+SVKM ’ S MPST M E, NMI M S , MUMBAI 
+April 2014   
+1   
+ 
+ 
+CERTIFICATE 
+This is to certif y that the project enti tl ed “ Score It” is the bonafide work carried out by Anuj Chopra, John Jacob and Siddhant Deshmukh of B.Tech (Computer Engineering), MPSTME (NMIMS), Mumbai, during the VI semester of the academic year 2013-2014, in partial fulfillment of the requirements for the award of the Degree of Bachelors of Technology as per the norms prescribed by NMIMS. The mini-project work has been assessed and found to be satisfactory. 
+           Internal Mentor   
+ _______________________      ________________________ 
+Examiner 1        Examiner 2   
+________________________       Dean          Dr. S. Y. Mhaiskar      
+ 
+2   
+ 
+ DECLARATION 
+We, Anuj Chopra, John Jacob and Siddhant Deshmukh, Roll No., B017, B002 and B020, respectively, of B.Tech (Computer Engineering), VI semester understand that plagiarism is defined as anyone or combination of the following: 
+1. Un-credited verbatim copying of individual sentences, paragraphs or illustration (such as graphs, diagrams, etc.) from any source, published or unpublished, including the internet. 
+2. Un-credited improper paraphrasing of pages paragraphs (changing a few words phrases, or rearranging the original sentence order) 
+3. Credited verbatim copying of a major portion of a paper (or thesis chapter) without clear delineation of who did wrote what. (Source: IEEE, The institute, Dec. 2004) 
+4. I have made sure that all the ideas, expressions, graphs, diagrams, etc., that are not a result of my work, are properly credited. Long phrases or sentences that had to be used verbatim from published literature have been clearly identified using quotation marks. 
+5. I affirm that no portion of my work can be considered as plagiarism and I take full responsibility if such a complaint occurs. I understand fully well that the guide of the seminar/ project report may not be in a position to check for the possibility of such incidences of plagiarism in this body of work. 
+Signature of the Student:    Name: Anuj Chopra 
+John Jacob Siddhant Deshmukh 
+Roll No. B017     B002    B020 
+Place: Mumbai Date: 23/04/2014 
+3   
+ 
+ ACKNOWLEDGEMENTS 
+For this mini project, the credit goes to Prof Praveen Shreenath, who guided and encouraged us to take this project up and helped us overcome the difficulties that we faced. We would like to thank our faculty mentor, Prof Supriya Agrawal as well for her positive and encouraging feedback. We would also like to thank our parents for their continuous support. 
+ 
+ 
+               
+4   
+ 
+ Abstract 
+In toda y’ s stressful worl d, entertainment has bec ome a ver y int egr al part of an y indi vidual’s li fe.  He seeks entertainment from various sources. Mea nwhile, S mart phones an d P DA’s have  becom e  very dominant over the past few years. They have opened the doors to a wide range of commercial possibilities, especially, with the presence of cameras, high speed dual-core and quad-core processors, internet access, etc. Mobile devices are becoming more like P C ’s which also virtuali z es almost everything around us. Applications on Mobile devices like an android device has loads of applications a user can choose to use. It was thou ght that to serv e well  to t he indi vidual’s need to choose the best application among a plethora of choices, a rating application should be developed.  
+ The name  of thi s Androi d Applicati on is “ Score It”.  It is a Rating Application and the purpose of 
+this application is to let the users be able to know which applications are the best and are must haves on every persons android device so as to enjoy a really good android experience. There are several Categories of applications and the best applications per category is listed. A user can View, Read descriptions, View Graphs on its usability, design, performance and other parameters, Rate the Application and Download it eventually. 
+ The application is developed in Java by using Eclipse IDE. The Android Software Development 
+Kit (SDK) is used which includes a variety of custom tools that help us develop mobile applications on the Android platform. These include the Emulator and the Android Development Tools (ADT) plug-ins for Eclipse.  
+ 
+ 
+ 
+ 
+ 
+  
+  
+5   
+ 
+ Table of contents 
+CHAPTER NO.    TITLE     PAGE NO. Abstract     5 List of Figures     7 Abbreviations     8   
+1.      INTRODUCTION 1.1 Project Overview    9 1.2 Hardware Specification   9 1.3 Software Specification   9 
+2.     INSTALLATION & SETUP      2.1 Android SDK Setup   10      2.2 Creating an Android Application  11 3.      ANALYSIS & DESIGN      3.1 Functional Requirements   15      3.2 Non-Functional Requirements  15      3.3 Design Constraints   15 4.     PROJECT IN DETAIL      4.1 General Requirements   16      4.2 General Constraints   17      4.3 Interface     17 5.     CONCLUSION & FUTURE SCOPE  22  REFERENCES         23 APPENDIX          24  
+        
+6   
+ 
+ List of Figures 
+CHAPTER NO.    TITLE      PAGE NO. 2.     INSTALLATION & SETUP 
+Fig 2.1 Android SDK Manager   10 Fig 2.2 Android Virtual Device Manager  11 Fig 2.3 Setup Page for Application Name  11 Fig 2.4 Creating Logo     12 Fig 2.5 Creating Activity    12 Fig 2.6 Specifying Activity and Layout  13 Fig 2.7 Contents in Package Explorer  13 Fig 2.8 Emulator     14 
+4.      PROJECT IN DETAIL      Figures and Screenshots     17 A      APPENDIX      Fig A3.1 Use-Case Diagram    26               
+7   
+ 
+Abbreviations 
+ 
+Abbreviation   Description 
+Android     The application development platform SDK      Software Development Kit GUI      Graphical User Interface Qt  A cross-platform application framework used to develop 
+applications using GUI. DFD      Data Flow Diagram API      Application Programming Interface QEMU     Quick Emulator IDE      Integrated Development Environment ADT      Android Development Tools          
+ 
+ 
+ 
+8   
+ 
+1. Introduction  
+1.1 Project Overview  
+The report under design is for an Application called ScoreIt!. It contains the overall as well as the specific descriptive details of the software under consideration. It includes the result of analysis done for the project. Various techniques were used to elicit the requirements and the needs were identified, analyzed and refined. The objective of this document, therefore, is to formally describe the system's high level requirements including functional requirements, non-functional requirements, business rules and constraints. The document is organized as follows:  Section 2 of the document includes description of the product, user characteristics, general constraints and assumptions for ScoreIt. This model demonstrates the development's team understanding for the product and aims to maximize the team's ability to build a system that supports the business. . It elaborates on the functional and non-functional requirements of the system and focuses on the constraints on the software design.  Section 3 presents the detailed requirements which comprise the domain model. It focuses on the interface of the final application, a detailed structuring of the product.  
+1.2 Hardware Specifications  
+In this system, all interaction with the hardware is done through the API's in Android.  
+1.3 Software Specifications 
+ This application is developed in the Java language using the Android SDK. The SDK 
+includes a set of development tools including a debugger, software libraries, a handset emulator based on QEMU, documentation, sample code, and tutorials. The officially supported IDE is Eclipse using the ADT plugin. 
+      
+9   
+ 
+ 
+  
+2. Installation and setup 
+2.1 Android SDK Setup   
+ 1) Download the latest version of Android SDK ADT Bundle from the official Android website for your operating system. The ADT Bundle provides everything you need to start developing apps, including a version of the Eclipse IDE with built-in ADT (Android Developer Tools). Also it is required that you install Java JDK before installing Android SDK.  2) Unpack the ZIP file and save it to an appropriate location.   3) Then launch the Android SDK Manager   
+  
+Fig2.1 Android SDK Manager   
+  
+4) Once you have launched SDK manager, you should install other required packages.    
+10   
+ 
+5) You will have to create Android Virtual Device to test your Android applications. Open the AVD from the extracted Android SDK ADT Bundle. It will launch Android AVD Manager. Use New button to create a new Android Virtual Device with the suitable requirements. Then  click  on ok button to create AVD.   
+ Fig2.2 Android Virtual Device Manager 
+   
+ 
+2.2 Creating an Android Application 
+ 1) Open the Eclipse IDE from the extracted Android SDK ADT bundle. Then click on File -
+> New -> Project. Then select Android Application Project from the list. Then fill in the form details as required and then click on next screen. 
+   
+  
+Fig2.3 Setup Page for Application name  
+11   
+ 
+ 2) For now we can keep the default settings. Then click on next. 
+  
+3) This screen allows you to specify the Launcher Icon. After choosing the icon, click on next.   
+  
+Fig 2.4 Creating Logo  
+ 3) This screen allows you to specify the type of activity. After selecting the type of activity 
+click on next.   
+  
+Fig 2.5 Creating Activity    
+4) This screen allows you to specify the name of Activity and Layout. After specifying the names click on finish. 
+12   
+ 
+   
+  
+Fig 2.6 Specify Activity and Layout    
+5) After this you can see the contents of the project in the package explorer.    
+  
+Fig 2.7 Contents of the project in the Package Explorer   7) Since we have already created the android virtual device, we can run the application by right clicking the project and selecting run as -> Android Application. The emulator may take a few minutes to start.    8) Emulator starts. We can now see the app that we have created.  
+13   
+ 
+  
+  
+Fig 2.8 Emulator  
+  
+       
+14   
+ 
+3. Analysis and Design  
+3.1 Functional Requirements 
+The purpose of this android application is to help common users to get a better understanding of the applications on play store (android application market) and help them choose the most appropriate applications depending on their phone model and their requirements. We have organized the applications from play store into various categories and also rated all the applications based on various criteria. This helps the user to easily find popular applications rather than browsing through the vast and ever increasing android market.   
+ The various functions that the application performs include: 
+1. Register 2. Login 3. Select Categories 4. Description and Graphs of every application 5. Web View of PlayStore 6. Provide Download Links to link with PlayStore 7. Ratings 
+   
+          
+15   
+ 
+3.1.1 Use-Case Model  
+ 
+   
+ 
+Fig A3.1 Use-Case Diagram   
+   
+       
+16   
+ 
+3.2 Non-Functional Requirements 
+1. Performance 2. Reliability 3. Availability 4. Security 5. Portability 
+     
+3.3 Data Flow Diagram (DFD)     
+   
+  
+Figure 3: Data Flow Diagram   
+17   
+ 
+ 3.4 Sequence Diagram 
+ 
+  
+ Figure 2: Sequence Diagram       
+18   
+ 
+ 3.5 Design Constraints 
+ 1. The system should be a mobile application. 2. The software development should be done on Android platform. 3. The music player should use the Phonon as the back-end. 4. Qt using JavaScript should be used for the GUI. 
+                    
+19   
+ 
+ 
+4 Project in Detail 
+ 
+The purpose of this android application is to help common users to get a better understanding of the applications on play store (android application market) and help them choose the most appropriate applications depending on their phone model and their requirements. We have organized the applications from play store into various categories and also rated all the applications based on various criteria. This helps the user to easily find popular applications rather than browsing through the vast and ever increasing android market.   The system will basically contain applications sorted in various categories and ratings combined from the play store as well as our specially formulated score. The score will be represented pictorially using bar graphs and pie charts to give the user a more visual and intuitive experience.  The software gives the users an option to download the application directly from PlayStore using download links for the app he/she is viewing. A direct link to the play store will be available for each application. The main aim is to help the users find the most suitable and popular applications without the headache of going through the play store.   The database that we would be working on is inbuilt android SQL database to store user details.  The application also provides a webview to display the PlayStore through the application.  The software to be produced has a smooth, fluid Interface and thus, makes the whole experience very convenient for the user.     
+4.1 General Requirements 
+ The general requirements of this system are: 
+• A clear idea of what the user wants from the system • The functions that the user would want the software to have • The interface specifications 
+20   
+ 
+   
+4.2 General Constraints 
+The constraints on this system are: 
+• The software has to be delivered within 8 weeks. • The software has to be compatible with Android. • The software should consume the least amount of memory possible. • User-friendly interface should be the main concern. • Bugs should be minimized. • Changing functions should be as fast as possible.. 
+ 
+                       
+21   
+ 
+  
+4.3 Interface 
+     
+                       (login page) (welcome screen) 
+      
+ 
+22   
+ 
+   
+  
+                                    (application page)                                      (scrolling tab view) 
+                                                   
+23   
+ 
+     
+    
+           (webview)                                     (download button) 
+    
+24   
+ 
+    
+                   (application download from playstore) 
+      
+25   
+ 
+  Conclusion and Future Scope 
+Future updates include: 
+•  Include more apps •  Gui modification •  Fully fledged database •  Adding specific aspects to database •  Rating functionality better •  Making app phone specific 
+ We were able to understand the basic concepts of the functioning of an android application. We came across various concepts that had to be implemented during the development of this application like java, XML, JavaScript etc. We could ultimately complete this application with the help of our mentor and our class room guide within period of 12 weeks. However, there will be future updates being pushed out to users to make their experience even better and smooth.  Hence, we have been successful in designing and implementing an Android Application titled ScoreIt, in our Project Workshop for Semester 6, Year 3.     
+References 
+[1] `Qt Documentation' http://qt-project.org/doc/ [2] `Phonon Library' http://phonon.kde.org/ [3] `Android Develope rs’  http://developer.android.com/develop/index.html [4]‘How to make  an  Android  app’ 
+https://developer.android.com/training/basics/firstapp/index.html?hl=it [ 5]  ‘Cli ckable Links’  http://stackoverflow.com/questions/9204303/android-is-it-possible-
+to-add-a-clickable-link-into-a-string-resource  
+26   
+ 
+   
+Appendix  
+A1. Functional Requirements 
+ 
+Functional Requirement 1: Selecting categories  Introduction: From a list of categories, the user selects the category of apps he wants to view for the selected phone. 
+ Input: The user clicks on the phone to select it. 
+ Processing: The system takes the `click' as a trigger and selects that particular category. 
+ Output: The chosen category is selected. 
+ Functional Requirement 2: Web View 
+Allows the user to visit the play store if he is not able to get the desired results using our application. 
+ Functional Requirement 3: Choose an Application  The user can select the application of his choice depending on the category under which 
+the application falls.  
+Functional Requirement 4: Download Using Download Link  The addition of a download button will allow the user to download the application by 
+redirection him to the play store.  
+Functional Requirement 5: Rate Application  The user can rate the application on the basis of his experience with the same and also use 
+these ratings to understand how t=good the application is and whether it is worth downloading or not. 
+27   
+ 
+  A2. Non-Functional Requirements  
+Non-Functional Requirement 1: Performance Response Time: The response time to login, register and choose application should be less that 1 sec. Capacity: The number of users that can be held in the database or the number of apps in the application must not be restricted. User Interface The interface should respond within 2 seconds.  
+Non-Functional Requirement 2: Reliability The system should maintain the database of the records well, without losing even a single user from the memory.  
+Non-Functional Requirement 3: Availability The system should be available at all times.  
+Non-Functional Requirement 4: Security Login: The system will require root permissions for starting the port and configuring it to play music over it. The permissions required for this app pop up during Installation.  Non-Functional Requirement 5: Portability The system should be portable from one Android device to the other, while portability with respect to the Operating System is not allowed.  
+      
+ 
+28  
